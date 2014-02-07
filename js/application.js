@@ -1,8 +1,8 @@
 
 // Multipliers based on how hungry you think people are
 //
-var big_eaters_multiplier     = 2;
-var medium_eaters_multiplier  = 1.5;
+var big_eaters_multiplier     = 1.5;
+var medium_eaters_multiplier  = 1.2;
 var small_eaters_multiplier   = 0.7;
 
 // The base number of slices a normal person will be eating
@@ -20,12 +20,14 @@ var sides_present_multiplier = 0.6;
 
 var pizza_chain_data  = {
   "Dominos" : {
+    "xlarge"   : 10,
     "large"   : 10,
     "medium"  : 8,
     "small"   : 6
   },
 
   "Pizza Hut" : {
+    "xlarge"   : 10,
     "large"   : 10,
     "medium"  : 8,
     "small"   : 6
@@ -33,6 +35,7 @@ var pizza_chain_data  = {
   },
 
   "Pappa John's" : {
+    "xlarge"  : 16,
     "large"   : 10,
     "medium"  : 8,
     "small"   : 6
@@ -40,9 +43,9 @@ var pizza_chain_data  = {
 };
 
 var calculate_slices_needed = function(big_eaters_count, medium_eaters_count, small_eaters_count, sides_value){
-  var big_eaters_slices = big_eaters_count * big_eaters_multiplier;
-  var medium_eaters_slices = medium_eaters_count * medium_eaters_multiplier;
-  var small_eaters_slices = small_eaters_count * small_eaters_multiplier;
+  var big_eaters_slices = (big_eaters_count * slices_per_person) * big_eaters_multiplier;
+  var medium_eaters_slices = (medium_eaters_count * slices_per_person) * medium_eaters_multiplier;
+  var small_eaters_slices = (small_eaters_count * slices_per_person) * small_eaters_multiplier;
   var subtotal_slices = big_eaters_slices + medium_eaters_slices + small_eaters_slices;
 
   if(sides_value == 0) {
@@ -54,6 +57,43 @@ var calculate_slices_needed = function(big_eaters_count, medium_eaters_count, sm
 
 var calculate_pizzas_needed = function(slices, ordering_from, size){
   var slices_per_pizza = pizza_chain_data[ordering_from][size];
-  Math.ceil(slices / slices_per_pizza); 
+  var pizzas = Math.ceil((slices / slices_per_pizza));
+  return pizzas;
 }
+
+
+$( document ).ready(function() {
+  $('form#how_many_pizzas').submit(function( event ) {
+    
+    var big_eaters = parseInt($('#number_big_eaters').val(), 10);
+    var small_eaters = parseInt($('#number_small_eaters').val(), 10);
+    var medium_eaters = parseInt($('#number_medium_eaters').val(), 10);
+   
+    var sides = parseInt($('#number_of_sides option:selected').val(), 10);
+
+    var chain = $('#pizza_chains option:selected').val();
+    var size = $('#pizza_size option:selected').val();
+   
+    
+    if(isNaN(big_eaters)){
+      big_eaters = 0;
+    }
+    if(isNaN(small_eaters)){
+      small_eaters = 0;
+    }
+    if(isNaN(medium_eaters)){
+      medium_eaters = 0;
+    }
+    if(isNaN(sides)){
+      sides = 0;
+    }
+    
+    var slices_needed = calculate_slices_needed(big_eaters, medium_eaters, small_eaters, sides);
+    var pizzas_needed = calculate_pizzas_needed(slices_needed, chain, size);
+
+    console.log(pizzas_needed)
+
+    event.preventDefault();
+  });
+});
 
