@@ -74,6 +74,7 @@ $( document ).ready(function() {
     var chain = $('#pizza_chains option:selected').val();
     var size = $('#pizza_size option:selected').val();
    
+
     
     if(isNaN(big_eaters)){
       big_eaters = 0;
@@ -87,10 +88,23 @@ $( document ).ready(function() {
     if(isNaN(sides)){
       sides = 0;
     }
+
+    if(!chain){
+      chain = 'Pizza Hut';
+    }
+    
+    if(!size){
+      size = 'medium';
+    }
     
     var slices_needed = calculate_slices_needed(big_eaters, medium_eaters, small_eaters, sides);
     var pizzas_needed = calculate_pizzas_needed(slices_needed, chain, size);
 
+    if(pizzas_needed == 0) {
+      alert('Fill in the form properly and try again');
+    }else{
+      alert('You need to buy ' + pizzas_needed + ' pizzas  to feed everyone.');
+    }
     console.log(pizzas_needed)
 
     event.preventDefault();
