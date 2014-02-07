@@ -34,7 +34,7 @@ var pizza_chain_data  = {
 
   },
 
-  "Pappa John's" : {
+  "Papa John's" : {
     "xlarge"  : 16,
     "large"   : 10,
     "medium"  : 8,
