@@ -7,7 +7,6 @@
     <title>How many pizzas? - Calculate how many pizzas you should buy for your team by The Happy Geek Ltd</title>
 
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap-theme.min.css">
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/howmanypizzas.css">
 
@@ -34,7 +33,100 @@
     <![endif]-->
   </head>
   <body>
-    <h1>Hello, world!</h1>
+
+    <header>
+      <section class="container clearfix">
+        <article class="col-md-12">
+          <h1>How many pizzas?</h1>
+          <p class="lead">
+            Maybe you have a party planned, or a meetup or perhaps even a work lunch? Well now you'll be able to work out
+            exactly <strong>how many pizzas you should order</strong>!
+          </p>
+          <p>
+            Simply fill out the simple form below, click the button, and find out how many pizzas you should order!
+          </p>
+        </article>
+      </section>
+    </header>
+
+
+    <section id="pizza_form">
+      <section class="container clearfix">
+        <form role="form" class="form">
+          <div class="row">
+            <div class="col-md-4">
+              <fieldset>
+                <legend>Who's going to be there?</legend> 
+
+                <div class="form-group">
+                  <label for="number_big_eaters">Number of big eaters?</label>
+                  <input type="text" id="number_big_eaters">
+                  <p class="help-block">You know, the folks that could eat a horse!</p>
+                </div>
+
+                 <div class="form-group">
+                  <label for="number_small_eaters">Number of small eaters?</label>
+                  <input type="text" id="number_small_eaters">
+                  <p class="help-block">The ones who have half a burger and are full</p>
+                </div>
+
+                 <div class="form-group">
+                  <label for="number_medium_eaters">Number of Dark Horses?</label>
+                  <input type="text" id="number_medium_eaters">
+                  <p class="help-block">Folks you're not sure of how much they'd eat</p>
+                </div>
+
+              </fieldset>
+            </div>
+            <div class="col-md-4">
+              <fieldset>
+                <legend>Where are you buying from?</legend> 
+                <div class="form-group">
+                  <select id="pizza_chains"  class="form-control">
+                    <option value=""></option>
+                    <option value="Dominos">Dominos</option>
+                    <option value="Pizza Hut">Pizza Hut</option>
+                    <option value="Pappa John's">Pappa John's</option>
+                    <option value="Pappa John's">Pappa John's</option>
+                  </select>
+                </div>
+              </fieldset>
+              <fieldset>
+                <legend>Which size of pizza are you buying?</legend> 
+                <div class="form-group">
+                  <select id="pizza_chains"  class="form-control">
+                    <option value=""></option>
+                    <option value="small">Small Pizzas</option>
+                    <option value="medium">Medium Pizzas</option>
+                    <option value="large">Large Pizzas</option>
+                    <option value="xlarge">Extra Large Pizzas</option>
+                  </select>
+                </div>
+              </fieldset>
+            </div>
+            <div class="col-md-4">
+              <fieldset>
+                <legend>Ordering any sides?</legend> 
+                 <div class="form-group">
+                  <select id="number_of_sides" class="form-control">
+                    <option value="0">Nope, no sides</option>
+                    <option value="1">Yeah, but just a box of wedges or something</option>
+                    <option value="1.4">Yup! The works!</option>
+                  </select>
+                </div>
+              </fieldset>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <button type="button" class="btn btn-success btn-lg btn-block" type="submit">
+                How many pizzas?
+              </button>
+            </div>
+          </div>
+        </form>
+      </section>
+    </section>
 
 
     <footer>

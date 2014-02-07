@@ -39,3 +39,21 @@ var pizza_chain_data  = {
   }
 };
 
+var calculate_slices_needed = function(big_eaters_count, medium_eaters_count, small_eaters_count, sides_value){
+  var big_eaters_slices = big_eaters_count * big_eaters_multiplier;
+  var medium_eaters_slices = medium_eaters_count * medium_eaters_multiplier;
+  var small_eaters_slices = small_eaters_count * small_eaters_multiplier;
+  var subtotal_slices = big_eaters_slices + medium_eaters_slices + small_eaters_slices;
+
+  if(sides_value == 0) {
+    return subtotal_slices;
+  }else{
+    return subtotal_slices - (sides_value * sides_present_multiplier);
+  }
+};
+
+var calculate_pizzas_needed = function(slices, ordering_from, size){
+  var slices_per_pizza = pizza_chain_data[ordering_from][size];
+  Math.ceil(slices / slices_per_pizza); 
+}
+

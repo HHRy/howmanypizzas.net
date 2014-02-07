@@ -19,6 +19,24 @@ body > footer.contact {
 }
 
 
+body > header {
+  background-color: #2980b9;
+  padding-top: 2em;
+  padding-bottom: 2em;
+  color: #fff;
+}
+
+body > header h1, body > header strong {
+  color: #f1c40f;
+}
+
+section#pizza_form {
+  padding-top: 2em;
+  padding-bottom: 2em;
+  background-color: #ecf0f1;
+  color: #444;
+}
+
 .center {
   text-align: center;
 }
