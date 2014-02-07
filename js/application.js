@@ -11,7 +11,7 @@ var slices_per_person         = 2.5;
 
 // Multiplier for this being a work lunch (on the company)
 //
-var work_lunch_multiplier     = 1.5;
+var work_lunch_multiplier     = 1.2;
 
 // Multiplier for there being sides present
 //
@@ -42,11 +42,15 @@ var pizza_chain_data  = {
   }
 };
 
-var calculate_slices_needed = function(big_eaters_count, medium_eaters_count, small_eaters_count, sides_value){
+var calculate_slices_needed = function(big_eaters_count, medium_eaters_count, small_eaters_count, sides_value, boss_paying){
   var big_eaters_slices = (big_eaters_count * slices_per_person) * big_eaters_multiplier;
   var medium_eaters_slices = (medium_eaters_count * slices_per_person) * medium_eaters_multiplier;
   var small_eaters_slices = (small_eaters_count * slices_per_person) * small_eaters_multiplier;
   var subtotal_slices = big_eaters_slices + medium_eaters_slices + small_eaters_slices;
+
+  if(boss_paying == true) {
+    subtotal_slices = subtotal_slices * work_lunch_multiplier;
+  }
 
   if(sides_value == 0) {
     return subtotal_slices;
@@ -74,7 +78,13 @@ $( document ).ready(function() {
     var chain = $('#pizza_chains option:selected').val();
     var size = $('#pizza_size option:selected').val();
    
+    var boss_paying = parseInt($('#who_is_paying option:selected').val(), 10);
 
+    if(isNaN(boss_paying) || boss_paying == 0){
+      boss_paying = false;
+    } else {
+      boss_paying = true;
+    } 
     
     if(isNaN(big_eaters)){
       big_eaters = 0;
@@ -97,7 +107,7 @@ $( document ).ready(function() {
       size = 'medium';
     }
     
-    var slices_needed = calculate_slices_needed(big_eaters, medium_eaters, small_eaters, sides);
+    var slices_needed = calculate_slices_needed(big_eaters, medium_eaters, small_eaters, sides, boss_paying);
     var pizzas_needed = calculate_pizzas_needed(slices_needed, chain, size);
 
     if(pizzas_needed == 0) {
