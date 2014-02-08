@@ -1,4 +1,3 @@
-
 // Multipliers based on how hungry you think people are
 //
 var big_eaters_multiplier     = 1.5;
@@ -7,7 +6,7 @@ var small_eaters_multiplier   = 0.7;
 
 // The base number of slices a normal person will be eating
 //
-var slices_per_person         = 2.5;
+var slices_per_person         = 4.0;
 
 // Multiplier for this being a work lunch (on the company)
 //
