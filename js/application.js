@@ -1,3 +1,4 @@
+
 // Multipliers based on how hungry you think people are
 //
 var big_eaters_multiplier     = 1.5;
