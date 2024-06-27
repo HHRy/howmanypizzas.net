@@ -35,6 +35,7 @@ section#pizza_form {
   padding-bottom: 2em;
   background-color: #ecf0f1;
   color: #444;
+  min-height: 70vh;
 }
 
 .center {

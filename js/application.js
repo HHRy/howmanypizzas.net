@@ -1,21 +1,26 @@
 
 // Multipliers based on how hungry you think people are
 //
-var big_eaters_multiplier     = 1.5;
-var medium_eaters_multiplier  = 1.2;
-var small_eaters_multiplier   = 0.7;
+var big_eaters_multiplier         = 1.5;
+var medium_eaters_multiplier      = 1.2;
+var small_eaters_multiplier       = 0.7;
 
 // The base number of slices a normal person will be eating
 //
-var slices_per_person         = 4.0;
+var slices_per_person             = 4.0;
 
 // Multiplier for this being a work lunch (on the company)
 //
-var work_lunch_multiplier     = 1.2;
+var work_lunch_multiplier         = 1.35;
+
+// Multiplier for there being a corporate sponsor
+//
+var corporate_sponsor_multiplier  = 1.2;
+
 
 // Multiplier for there being sides present
 //
-var sides_present_multiplier = 0.6;
+var sides_present_multiplier      = 0.6;
 
 
 var pizza_chain_data  = {
@@ -42,7 +47,7 @@ var pizza_chain_data  = {
   }
 };
 
-var calculate_slices_needed = function(big_eaters_count, medium_eaters_count, small_eaters_count, sides_value, boss_paying){
+var calculate_slices_needed = function(big_eaters_count, medium_eaters_count, small_eaters_count, sides_value, boss_paying, corporate_sponsor){
   var big_eaters_slices = (big_eaters_count * slices_per_person) * big_eaters_multiplier;
   var medium_eaters_slices = (medium_eaters_count * slices_per_person) * medium_eaters_multiplier;
   var small_eaters_slices = (small_eaters_count * slices_per_person) * small_eaters_multiplier;
@@ -50,6 +55,10 @@ var calculate_slices_needed = function(big_eaters_count, medium_eaters_count, sm
 
   if(boss_paying == true) {
     subtotal_slices = subtotal_slices * work_lunch_multiplier;
+  }
+
+  if(corporate_sponsor == true) {
+    subtotal_slices = subtotal_slices * corporate_sponsor_multiplier;
   }
 
   if(sides_value == 0) {
@@ -80,10 +89,18 @@ $( document ).ready(function() {
    
     var boss_paying = parseInt($('#who_is_paying option:selected').val(), 10);
 
-    if(isNaN(boss_paying) || boss_paying == 0){
+    if(isNaN(boss_paying) || boss_paying != 2){
       boss_paying = false;
     } else {
       boss_paying = true;
+    } 
+
+    var corporate_sponsor = parseInt($('#who_is_paying option:selected').val(), 10);
+
+    if(isNaN(corporate_sponsor) || corporate_sponsor != 1){
+      corporate_sponsor = false;
+    } else {
+      corporate_sponsor = true;
     } 
     
     if(isNaN(big_eaters)){
@@ -107,7 +124,7 @@ $( document ).ready(function() {
       size = 'medium';
     }
     
-    var slices_needed = calculate_slices_needed(big_eaters, medium_eaters, small_eaters, sides, boss_paying);
+    var slices_needed = calculate_slices_needed(big_eaters, medium_eaters, small_eaters, sides, boss_paying, corporate_sponsor);
     var pizzas_needed = calculate_pizzas_needed(slices_needed, chain, size);
 
     if(pizzas_needed == 0) {
