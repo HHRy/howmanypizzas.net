@@ -42,5 +42,5 @@ This project is sponsored by [Nekotachi Ltd][5].
 [4]: https://github.com/HHRy/howmanypizzas.net/tree/old_version
 [5]: http://nekotachi.co.uk
 [6]: https://docs.npmjs.com/downloading-and-installing-node-js-and-npm
-[7]: https://github.com/HHRy/howmanypizzas.net/blob/master/CONDUCT.md
+[7]: https://github.com/HHRy/howmanypizzas.net/blob/master/CODE_OF_CONDUCT.md
 [8]: https://github.com/HHRy/howmanypizzas.net/blob/master/LICENSE
