@@ -4,9 +4,12 @@ export default {
     return {
       numAdults: 0,
       numKids: 0,
+      slicesPerPizza: 0,
+      leftoverSlices: 0,
+      slicesNeeed: 0,
       roughBigEaters: 0.043,
       roughSmallEaters: 0.08,
-      bigEatersFactor: 1.5,
+      bigEatersFactor: 1.7,
       mediumEatersFactor: 1.1,
       smallEatersFactor: 0.7,
       kidsFactor: 0.7,
@@ -18,6 +21,7 @@ export default {
       pizzaSizes: ["xlarge", "large", "medium", "small"], 
       pizzaSize: "medium",
       bigEaters: 0,
+      pizza: 'pizza',
       smallEaters: 0,
       remainderAdults: 0,
       slicesPerPerson: 3.5,
@@ -69,7 +73,7 @@ export default {
   methods: {
     calculate() {
       var slices = 0 
-      var slicesPerPizza = this.chainData[this.pizzaChain][this.pizzaSize]
+      this.slicesPerPizza = this.chainData[this.pizzaChain][this.pizzaSize]
 
       this.bigEaters = Math.ceil(this.numAdults * this.roughBigEaters)
       this.smallEaters = Math.ceil(this.numAdults * this.roughSmallEaters)
@@ -109,12 +113,22 @@ export default {
         slices += Math.ceil(((this.numKids * this.slicesPerPerson) * this.kidsFactor))
       }
 
-      var pizzaCount = Math.ceil(slices / slicesPerPizza)
+      this.slicesNeeed = Math.ceil(slices)
+
+      var pizzaCount = Math.ceil(slices / this.slicesPerPizza)
 
       // Make sure we always order at least one pizza
       if (pizzaCount < 1) {
         pizzaCount = 1
       }
+
+      if(pizzaCount == 1) {
+        this.pizza = 'pizza';
+      } else {
+        this.pizza = 'pizzas';
+      }
+
+      this.leftoverSlices = Math.ceil((pizzaCount * this.slicesPerPizza) - this.slicesNeeed)
 
       this.numPizzas = pizzaCount 
     }
@@ -124,13 +138,16 @@ export default {
 </script>
 
 <template>
-  <div className="grid grid-cols-4">
-    <div className="col-span-2">
-      <div className="grid grid-cols-2">
-        <div className="col-span-2">
-          <input  type="text" placeholder="Enter number of people" v-model="numAdults" />
-          <input  type="text" placeholder="Enter number of kids" v-model="numKids" />
+  <div className="grid grid-cols-1">
+          <label>
+            How many adults?
+            <vue-number-input v-model="numAdults" inline center controls></vue-number-input>
+          </label>
 
+          <label>
+            How many kids?
+            <vue-number-input v-model="numKids" inline center controls></vue-number-input>
+          </label>
 
           <select v-model="pizzaChain">
             <option v-for="option in pizzaChains" :value="option">
@@ -153,25 +170,34 @@ export default {
           &nbsp;
           <label for="corporateSponsor">Corporate Sponsor?</label>
         </div>
-          
-        </div>
-      </div>
-    </div>
 
   </div>
 
   <div>
-    Buy {{ numPizzas }} {{ pizzaSize }} pizzas from {{ pizzaChain }}.
 
-    <p>
-      Based on:
-      <ul>
-        <li>{{ bigEaters }} big eaters</li>
-        <li>{{ smallEaters }} small eaters</li>
-        <li>{{ remainderAdults }} medium eaters</li>
-        <li>{{ numKids }} kids</li>
-      </ul>
-    </p>
+    
+
+    <div class="card pizza-result shadow-md">
+      We've worked it out! 
+      <br>
+      <span>
+        You should buy <strong>{{ numPizzas }}*</strong> {{ pizzaSize }} {{ pizza }} from <strong>{{ pizzaChain }}</strong>.
+      </span>
+    </div>
+
+    <div class="breakdown text-slate-400 p-5 mt-4 mb-8 text-center">
+      <p>
+        The attendes are assumed to be:         
+          {{ bigEaters }} big eaters, 
+          {{ smallEaters }} small eaters,
+          {{ remainderAdults }} medium eaters, and
+          {{ numKids }} kids.
+          A {{ pizzaSize }} pizza from {{ pizzaChain }} has {{ slicesPerPizza }} slices.
+          To feed everyone, there are {{ slicesNeeed }} slices needed, you may have
+          {{ leftoverSlices }} potential leftover slices
+        
+      </p>
+    </div>
   </div>
 
 </template>

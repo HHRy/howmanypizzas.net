@@ -2,3 +2,29 @@
 @tailwind components;
 @tailwind utilities;
 @tailwind forms;
+
+@layer components {
+  .card {
+    background-color: theme('colors.white');
+    border-radius: theme('borderRadius.lg');
+    padding: theme('spacing.6');
+    box-shadow: theme('boxShadow.xl');
+  }
+
+  .pizza-result{
+    background-color: #bec132;
+    text-align: center;
+    font-size: 1.5rem;
+    color: #fff;
+    font-weight: bold;
+    margin-top: 4rem;
+  }
+
+  .pizza-result strong {
+    color:#b61f3b;
+  }
+
+  .pizza-result span {
+    font-size: 2rem;
+  }
+}
