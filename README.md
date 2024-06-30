@@ -28,10 +28,6 @@ Feel free to fork, edit, and make a pull request. All contributors
 must adhere to our [Code of Conduct][7].
 
 
-## Sponsored by
-
-This project is sponsored by [Nekotachi Ltd][5].
-
 ## Contributors
 - [Ryan Stenhouse][1]
 - [Stephen Brown][2]
