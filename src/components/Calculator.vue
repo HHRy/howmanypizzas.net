@@ -24,7 +24,7 @@ export default {
       pizza: 'pizza',
       smallEaters: 0,
       remainderAdults: 0,
-      slicesPerPerson: 3.5,
+      slicesPerPerson: 4,
       chainData: {
         "Dominos" : {
           "xlarge"   : 10,
