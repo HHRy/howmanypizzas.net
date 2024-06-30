@@ -1,187 +1,33 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>How many pizzas? - Calculate how many pizzas you should buy for your team by Nekotachi Ltd</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
-    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-    <link rel="stylesheet" href="/css/howmanypizzas.css">
+    <meta name="description" content="Not sure how many pizzas to order for your next gathering? howmanypizzas.net makes it fun and easy to calculate the perfect number of pizzas for any group size. Try our tool now and make your pizza party planning a breeze!">
+    <meta name="keywords" content="pizza calculator, how many pizzas, pizza order tool, pizza party planning, group pizza order, pizza quantity calculator, pizza for gathering, pizza order estimate, pizza party helper, howmanypizzas.net">		<meta name="robots" content="index,follow">
+    <meta name="author" content="Nekotachi Ltd">
 
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:site" content="@nekotachiltd">
-    <meta name="twitter:creator" content="@nekotachiltd">
-    <meta name="twitter:title" content="How many pizzas? - Calculate how many pizzas you should buy for your team">
-    <meta name="twitter:description" content="The easiest way to work out how many pizzas you need to buy for a group of people.">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#f0543d">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
 
-    <meta itemprop="name" content="How many pizzas? - Calculate how many pizzas you should buy for your team">
-    <meta itemprop="description" content="The easiest way to work out how many pizzas you need to buy for a group of people.">
+    <link hreflang="en" href="https://howmanypizzas.net/" />
+		<link rel="alternate" hreflang="x-default" href="https://howmanypizzas.net/" />
 
-    <meta property="og:title" content="The easiest way to work out how many pizzas you need to buy for a group of people.">
-     <meta property="og:description" content="The easiest way to work out how many pizzas you need to buy for a group of people.">
-    <meta property="og:url" content="http://howmanypizzas.net/">
-    <meta property="og:site_name" content="How many pizzas?">
-    <meta property="og:type" content="app">
-    <meta property="og:image" content="http://howmanypizzas.net/img/how_many_pizzas.png">
+		<link rel="canonical" href="https://howmanypizzas.net/" />
 
 
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <title>How many pizzas should I buy?</title>
+
+    <script type="module" crossorigin src="/assets/index-OlcPaGKu.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-DrJkeVRE.css">
   </head>
   <body>
-
-    <header>
-      <section class="container clearfix">
-        <article class="col-md-12">
-          <h1>How many pizzas?</h1>
-          <p class="lead">
-            Maybe you have a party planned, or a meetup or perhaps even a work lunch? Well now you'll be able to work out
-            exactly <strong>how many pizzas you should order</strong>!
-          </p>
-          <p>
-            Simply fill out the simple form below, click the button, and find out how many pizzas you should order!
-          </p>
-        </article>
-      </section>
-    </header>
-
-
-    <section id="pizza_form">
-      <section class="container clearfix">
-        <form role="form" class="form" id="how_many_pizzas">
-          <div class="row">
-            <div class="col-md-4">
-              <fieldset>
-                <legend>Who's going to be there?</legend> 
-
-                <div class="form-group">
-                  <label for="number_big_eaters">Number of big eaters?</label>
-                  <input type="text" id="number_big_eaters">
-                  <p class="help-block">You know, the folks that could eat a horse!</p>
-                </div>
-
-                 <div class="form-group">
-                  <label for="number_small_eaters">Number of small eaters?</label>
-                  <input type="text" id="number_small_eaters">
-                  <p class="help-block">The ones who have half a burger and are full</p>
-                </div>
-
-                 <div class="form-group">
-                  <label for="number_medium_eaters">Number of Dark Horses?</label>
-                  <input type="text" id="number_medium_eaters">
-                  <p class="help-block">Folks you're not sure of how much they'd eat</p>
-                </div>
-
-              </fieldset>
-            </div>
-            <div class="col-md-4">
-              <fieldset>
-                <legend>Where are you buying from?</legend> 
-                <div class="form-group">
-                  <select id="pizza_chains"  class="form-control">
-                    <option value=""></option>
-                    <option value="Dominos">Dominos</option>
-                    <option value="Pizza Hut">Pizza Hut</option>
-                    <option value="Papa John's">Papa John's</option>
-                  </select>
-                </div>
-              </fieldset>
-              <fieldset>
-                <legend>Which size of pizza are you buying?</legend> 
-                <div class="form-group">
-                  <select id="pizza_size"  class="form-control">
-                    <option value=""></option>
-                    <option value="small">Small Pizzas</option>
-                    <option value="medium">Medium Pizzas</option>
-                    <option value="large">Large Pizzas</option>
-                    <option value="xlarge">Extra Large Pizzas</option>
-                  </select>
-                </div>
-              </fieldset>
-            </div>
-            <div class="col-md-4">
-              <fieldset>
-                <legend>Ordering any sides?</legend> 
-                 <div class="form-group">
-                  <select id="number_of_sides" class="form-control">
-                    <option value="0">Nope, no sides</option>
-                    <option value="1">Yeah, but just a box of wedges or something</option>
-                    <option value="1.4">Yup! The works!</option>
-                  </select>
-                </div>
-              </fieldset>
-              <fieldset>
-                <legend>Is someone else paying?</legend> 
-                 <div class="form-group">
-                  <select id="who_is_paying" class="form-control">
-                    <option value="0.9">Nope, nobody</option>
-                    <option value="0">Yeah, my friend</option>
-                    <option value="1">Yeah, a corporate sponsor</option>
-                    <option value="2">Yeah, my employer</option>
-                  </select>
-                </div>
-              </fieldset>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <button class="btn btn-success btn-lg btn-block" type="submit">
-                How many pizzas?
-              </button>
-            </div>
-          </div>
-        </form>
-      </section>
-    </section>
-
-
-    <footer>
-      <section class="container clearfix">
-        <div class="row">
-           <article class="col-md-6 center">
-          
-          </article>
-
-          <article class="col-md-6 center">
-            <a href="https://github.com/HHRy/howmanypizzas.net" target="_blank" title="Find us on GitHub" style="margin-top: 20px; display: block">
-            <i class="fa fa-github-alt" style="margin-right: 10px;"></i>Fork this on GitHub
-            </a>
-          </article>
-        </div>
-        <div class="row">
-          <article class="col-md-12">
-            <p class="center smaller">
-              The easiest way to work out how many pizzas you need to buy for a group of people.
-            </p>
-            <p class="center smaller">
-              &copy; <a href="https://ryanstenhouse.dev" target="_blank" title="Ryan Stenhouse">Ryan Stenhouse</a> &amp; <a href="https://nekotachi.co.uk" target="_blank" title="Nekotachi Ltd">Nekotachi Ltd</a>.
-            </p>
-          </article>
-        </div>
-      </section>
-    </footer>
-    <footer class="contact">
-      <section class="container">
-        <article class="col-md-12">
-          <ul class="list-inline center">
-            <li>
-              <a href="https://twitter.com/nekotachiltd" title="Follow Nekotachi Ltd on Twitter" target="_blank">
-                <i class="fa fa-twitter" style="margin-right: 10px;"></i>@nekotachiltd
-              </a>
-            </li>
-          </ul>
-        </article>
-      </section>
-    </footer>
-
-
-    <script src="https://code.jquery.com/jquery.js"></script>
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-    <script src="/js/application.js"></script>
-
+    <div id="app"></div>
   </body>
 </html>

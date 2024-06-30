@@ -20,7 +20,7 @@ var corporate_sponsor_multiplier  = 1.2;
 
 // Multiplier for there being sides present
 //
-var sides_present_multiplier      = 0.6;
+var sides_present_multiplier      = 0.8;
 
 
 var pizza_chain_data  = {
