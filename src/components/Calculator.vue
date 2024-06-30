@@ -75,9 +75,15 @@ export default {
       var slices = 0 
       this.slicesPerPizza = this.chainData[this.pizzaChain][this.pizzaSize]
 
-      this.bigEaters = Math.ceil(this.numAdults * this.roughBigEaters)
-      this.smallEaters = Math.ceil(this.numAdults * this.roughSmallEaters)
-      this.remainderAdults = this.numAdults - this.bigEaters - this.smallEaters
+      if(this.numAdults > 4) {
+        this.bigEaters = Math.ceil(this.numAdults * this.roughBigEaters)
+        this.smallEaters = Math.ceil(this.numAdults * this.roughSmallEaters)
+        this.remainderAdults = this.numAdults - this.bigEaters - this.smallEaters
+      } else {
+        this.bigEaters = 0
+        this.smallEaters = 0
+        this.remainderAdults = this.numAdults
+      }
 
       slices += (this.bigEaters * this.bigEatersFactor)
       slices += (this.smallEaters * this.smallEatersFactor)
@@ -85,9 +91,11 @@ export default {
       slices += (this.remainderAdults * this.slicesPerPerson)
       slices *= this.mediumEatersFactor
 
-      // Special case for small and medium pizzas, since the slices can be smaller
-      if (this.pizzaSize == "small" || this.pizzaSize == "medium") {
-        slices *= 1.2
+      if(this.numAdults > 4) {
+        // Special case for small and medium pizzas, since the slices can be smaller
+        if (this.pizzaSize == "small" || this.pizzaSize == "medium") {
+          slices *= 1.2
+        }
       }
 
       // Speical case for Papa John's xlarge pizzas
