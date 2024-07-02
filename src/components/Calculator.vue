@@ -24,6 +24,7 @@ export default {
       pizza: 'pizza',
       smallEaters: 0,
       remainderAdults: 0,
+      baseSlicesPerPerson: 4,
       slicesPerPerson: 4,
       chainData: {
         "Dominos" : {
@@ -72,47 +73,54 @@ export default {
 
   methods: {
     calculate() {
-      var slices = 0 
       this.slicesPerPizza = this.chainData[this.pizzaChain][this.pizzaSize]
+      this.bigEaters = 0
+      this.smallEaters = 0
+      this.remainderAdults = this.numAdults
+
+      // Small pizzas have teeny wee slices, so folks will eat more of them.
+      if (this.pizzaSize == "small") {
+        this.slicesPerPerson = Math.ceil(this.baseSlicesPerPerson * 1.2)
+      
+      // Pappa John's X-Large pizzas are huge, so adjust down the slices count
+      } else if (this.pizzaSize == "xlarge" && this.pizzaChain == "Papa John's") {
+        this.slicesPerPerson = Math.ceil(this.baseSlicesPerPerson * 0.8)
+
+      // Large pizzas have big slices, so folks will eat less of them.
+      } else if (this.pizzaSize == "large" || this.pizzaSize == "xlarge") {
+        this.slicesPerPerson = Math.ceil(this.baseSlicesPerPerson * 0.9)
+
+      // Otherwise use the default.
+      } else {
+        this.slicesPerPerson = this.baseSlicesPerPerson
+      }
+
+      var slices = this.numAdults * this.slicesPerPerson
 
       if(this.numAdults > 4) {
         this.bigEaters = Math.ceil(this.numAdults * this.roughBigEaters)
         this.smallEaters = Math.ceil(this.numAdults * this.roughSmallEaters)
         this.remainderAdults = this.numAdults - this.bigEaters - this.smallEaters
-      } else {
-        this.bigEaters = 0
-        this.smallEaters = 0
-        this.remainderAdults = this.numAdults
       }
 
-      slices += (this.bigEaters * this.bigEatersFactor)
-      slices += (this.smallEaters * this.smallEatersFactor)
-
-      slices += (this.remainderAdults * this.slicesPerPerson)
-      slices *= this.mediumEatersFactor
-
+      // If there are more than 4 adults, we need to calculate the slices based on 
+      // the assumed distribution of big eaters, small eaters, and medium eaters.
       if(this.numAdults > 4) {
-        // Special case for small and medium pizzas, since the slices can be smaller
-        if (this.pizzaSize == "small" || this.pizzaSize == "medium") {
-          slices *= 1.2
-        }
-      }
-
-      // Speical case for Papa John's xlarge pizzas
-      if (this.pizzaSize == "xlarge" && this.pizzaChain == "Papa John's") {
-        slices *= 0.8
+        slices = Math.ceil(((this.bigEaters * this.slicesPerPerson) * this.bigEatersFactor))
+        slices += Math.ceil(((this.smallEaters * this.slicesPerPerson) * this.smallEatersFactor))
+        slices += Math.ceil(((this.remainderAdults * this.slicesPerPerson) * this.mediumEatersFactor))
       }
 
       // People eat more at work functions, so add 20% to the total
       // of slices to be safe.
       if (this.workFunction) {
-        slices *= 1.2
+        slices *= 1.1
       }
 
       // If someone is paying for it, folks might eat more, so add 10%
       // to the total of slices to be safe.
       if (this.corporateSponsor) {
-        slices *= 1.1
+        slices *= 1.05
       }
 
       // If there are any kids, handle them here. Kids usually eat less, so
@@ -122,7 +130,6 @@ export default {
       }
 
       this.slicesNeeed = Math.ceil(slices)
-
       var pizzaCount = Math.ceil(slices / this.slicesPerPizza)
 
       // Make sure we always order at least one pizza
@@ -137,7 +144,6 @@ export default {
       }
 
       this.leftoverSlices = Math.ceil((pizzaCount * this.slicesPerPizza) - this.slicesNeeed)
-
       this.numPizzas = pizzaCount 
     }
   },

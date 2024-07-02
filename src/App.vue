@@ -25,7 +25,7 @@ export default {
     </div>
     <div class="flex flex-wrap items-center gap-x-4 gap-y-2">
       <p class="text-sm leading-6 text-gray-900">
-        <strong class="font-semibold text-red-600">Having a pizza party?</strong><svg viewBox="0 0 2 2" class="mx-2 inline h-0.5 w-0.5 fill-current" aria-hidden="true"><circle cx="1" cy="1" r="1" /></svg> Use this free tool from Nekotachi Ltd to work out how many pizzas you need to order.
+        <strong class="font-semibold text-red-600">Having a pizza party?</strong><svg viewBox="0 0 2 2" class="mx-2 inline h-0.5 w-0.5 fill-current" aria-hidden="true"><circle cx="1" cy="1" r="1" /></svg> Use this free tool to work out how many pizzas you need to order.
       </p>
     </div>
     <div class="flex flex-1 justify-end"></div>
@@ -64,7 +64,7 @@ export default {
       * These are suggestions, follow them at your own risk. We are not responsible for any pizza-related mishaps. 🍕
     </div>
     <div class="bg-white text-gray-600 font-size-xs text-center py-1">
-      &copy; 2013 - {{currentDate.getFullYear()}}. Ryan Stenhouse, Nekotachi Ltd &amp; Contributors.
+      &copy; 2013 - {{currentDate.getFullYear()}}. Ryan Stenhouse &amp; Contributors.
     </div>
   </footer>
 </template>
