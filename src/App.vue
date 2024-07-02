@@ -34,6 +34,8 @@ export default {
 
 <!-- component -->
 <div class="w-full">
+  <div className="grid grid-cols-1">
+
     <div class="flex bg-white">
         <div class="flex items-center text-center  px-8 md:px-12 ">
             <div>
@@ -49,6 +51,7 @@ export default {
             </div>
         </div>
     </div>
+    </div>
 </div>
 
 
@@ -59,12 +62,15 @@ export default {
 
 
   
-  <footer>
+  <footer class="mb-4 mt-8">
     <div class="bg-gray-200 text-red-500 font-size-xs text-center py-4">
       * These are suggestions, follow them at your own risk. We are not responsible for any pizza-related mishaps. 🍕
     </div>
     <div class="bg-white text-gray-600 font-size-xs text-center py-1">
       &copy; 2013 - {{currentDate.getFullYear()}}. Ryan Stenhouse &amp; Contributors.
+    </div>
+    <div class="bg-white text-gray-300 font-size-xs text-center py-1">
+      This site is not affiliated with any pizza chain. It's just a bit of fun. Logos are used for illustrative purposes only.
     </div>
   </footer>
 </template>

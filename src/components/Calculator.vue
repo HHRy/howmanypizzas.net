@@ -26,6 +26,8 @@ export default {
       remainderAdults: 0,
       baseSlicesPerPerson: 4,
       slicesPerPerson: 4,
+      splitMenuMode: false,
+      splitMenuData: {},
       chainData: {
         "Dominos" : {
           "xlarge"   : 10,
@@ -74,10 +76,61 @@ export default {
       },
       corporateSponsor: function (val) {
         this.calculate()
+      },
+      splitMenuMode: function (val) {
+        this.calculate()
       }
   },
 
   methods: {
+    calculateSplitMenu() {
+      // splitMenuMode
+      var chainInformation = this.chainData[this.pizzaChain]
+      var remainingSlices = this.slicesNeeed
+
+      this.splitMenuData = {
+        "xlarge": 0,
+        "large": 0,
+        "medium": 0,
+        "small": 0
+      }
+
+      if(this.numAdults == 1) {
+        this.splitMenuData["small"] = 1
+        return
+      }
+
+      if(this.numAdults == 2) {
+        this.splitMenuData["medium"] = 1
+        return
+      }
+
+      while(remainingSlices > 6) {
+        this.pizzaSizes.forEach((size) => {
+          // Ignore xlarge as an option for now.
+          if(size != "xlarge") {
+            var pizzasOfThisSize = Math.floor(remainingSlices / chainInformation[size])
+            var slicesToDiscount = pizzasOfThisSize * chainInformation[size]
+            remainingSlices -= slicesToDiscount
+            this.splitMenuData[size] += pizzasOfThisSize
+          }
+        })
+      }
+
+      if(remainingSlices > 0) {
+        this.splitMenuData["medium"] += 1
+      }
+
+      var slicesOrdered = 0
+
+      this.pizzaSizes.forEach((size) => {
+        if(size != "xlarge") {
+          slicesOrdered += (this.splitMenuData[size] * chainInformation[size])
+        }
+      })
+
+      this.leftoverSlices = slicesOrdered - this.slicesNeeed
+    },
     calculate() {
       this.slicesPerPizza = this.chainData[this.pizzaChain][this.pizzaSize]
       this.bigEaters = 0
@@ -136,21 +189,27 @@ export default {
       }
 
       this.slicesNeeed = Math.ceil(slices)
-      var pizzaCount = Math.ceil(slices / this.slicesPerPizza)
-
-      // Make sure we always order at least one pizza
-      if (pizzaCount < 1) {
-        pizzaCount = 1
-      }
-
-      if(pizzaCount == 1) {
-        this.pizza = 'pizza';
+      
+      if(this.splitMenuMode) {
+        this.calculateSplitMenu()
       } else {
-        this.pizza = 'pizzas';
-      }
+        var pizzaCount = Math.ceil(slices / this.slicesPerPizza)
 
-      this.leftoverSlices = Math.ceil((pizzaCount * this.slicesPerPizza) - this.slicesNeeed)
-      this.numPizzas = pizzaCount 
+        // Make sure we always order at least one pizza
+        if (pizzaCount < 1) {
+          pizzaCount = 1
+        }
+
+        if(pizzaCount == 1) {
+          this.pizza = 'pizza';
+        } else {
+          this.pizza = 'pizzas';
+        }
+
+        this.leftoverSlices = Math.ceil((pizzaCount * this.slicesPerPizza) - this.slicesNeeed)
+        this.numPizzas = pizzaCount 
+      }
+      
     }
   },
 
@@ -159,6 +218,10 @@ export default {
 
 <template>
   <div className="grid grid-cols-1">
+    <input type="checkbox" id="splitMenuMode" v-model="splitMenuMode">
+          &nbsp;
+          <label for="splitMenuMode">Choose the sizes of pizza for me!</label>
+
           <label>
             How many adults?
             <vue-number-input v-model="numAdults" inline center controls></vue-number-input>
@@ -174,7 +237,8 @@ export default {
               {{ option }}
             </option>
           </select>
-          <select v-model="pizzaSize">
+
+          <select v-model="pizzaSize" v-show="!splitMenuMode">
             <option v-for="option in pizzaSizes" :value="option">
               {{ option }}
             </option>
@@ -197,24 +261,32 @@ export default {
 
     
 
-    <div class="card pizza-result shadow-md">
-      We've worked it out! 
-      <br>
-      <span>
+    <div class="card pizza-result shadow-md" v-show="parseInt(slicesNeeed) > 0">
+    
+      <span v-show="!splitMenuMode">
         You should buy <strong>{{ numPizzas }}*</strong> {{ pizzaSize }} {{ pizza }} from <strong>{{ pizzaChain }}</strong>.
+      </span>
+
+      <span v-show="splitMenuMode">
+        Your <strong>{{ pizzaChain }}</strong> order should be:<br>
+          <span v-for="(value, key) in splitMenuData" v-show="parseInt(value) > 0">
+            <strong>{{ value }}</strong> {{ key }}&nbsp;
+          </span>
       </span>
     </div>
 
-    <div class="breakdown text-slate-400 p-5 mt-4 mb-8 text-center">
+    <div class="breakdown text-slate-400 p-5 mt-4 mb-8 text-center" v-show="parseInt(slicesNeeed) > 0">
       <p>
         The attendes are assumed to be:         
           {{ bigEaters }} big eaters, 
           {{ smallEaters }} small eaters,
           {{ remainderAdults }} medium eaters, and
           {{ numKids }} kids.
+          <span v-show="!splitMenuMode">
           A {{ pizzaSize }} pizza from {{ pizzaChain }} has {{ slicesPerPizza }} slices.
-          To feed everyone, there are {{ slicesNeeed }} slices needed, you may have
-          {{ leftoverSlices }} potential leftover slices
+          </span>
+          To feed everyone, there are {{ slicesNeeed }} slices needed. You might have
+          {{ leftoverSlices }} slices left over.
         
       </p>
     </div>
