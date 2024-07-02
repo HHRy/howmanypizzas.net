@@ -16,7 +16,7 @@ export default {
       workFunction: false,
       corporateSponsor: false,
       numPizzas: 0,
-      pizzaChains: ["Dominos", "Pizza Hut", "Papa John's"],
+      pizzaChains: ["Dominos", "Pizza Hut", "Papa John's", "Pizza La"],
       pizzaChain: "Dominos",
       pizzaSizes: ["xlarge", "large", "medium", "small"], 
       pizzaSize: "medium",
@@ -45,6 +45,12 @@ export default {
           "large"   : 10,
           "medium"  : 8,
           "small"   : 6
+        },
+        "Pizza La" : {
+          "xlarge"   : 8,
+          "large"   : 8,
+          "medium"  : 6,
+          "small"   : 4
         }
       }
     }
