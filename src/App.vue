@@ -17,7 +17,7 @@ export default {
 
 <template>
   <div class="w-full">
-    <div className="grid grid-cols-1">
+    <div className="container mx-auto px-4">
       <div class="flex bg-white">
           <div class="flex items-center text-center  px-8 md:px-12 ">
               <div>
