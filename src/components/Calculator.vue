@@ -82,6 +82,21 @@ export default {
       }
   },
 
+  computed: {
+    dominos: function() {
+        return this.pizzaChain == 'Dominos' ? 'active' : 'inactive';
+    },
+    pizzahut: function() {
+        return this.pizzaChain == 'Pizza Hut' ? 'active' : 'inactive';
+    },
+    papajohns: function() {
+        return this.pizzaChain == 'Papa John\'s' ? 'active' : 'inactive';
+    },
+    pizzala: function() {
+        return this.pizzaChain == 'Pizza La' ? 'active' : 'inactive';
+    }
+  },
+
   methods: {
     calculateSplitMenu() {
       // splitMenuMode
@@ -217,64 +232,76 @@ export default {
 </script>
 
 <template>
-  <div className="grid grid-cols-1">
-    <input type="checkbox" id="splitMenuMode" v-model="splitMenuMode">
-          &nbsp;
-          <label for="splitMenuMode">Choose the sizes of pizza for me!</label>
-
-          <label>
-            How many adults?
-            <vue-number-input v-model="numAdults" inline center controls></vue-number-input>
-          </label>
-
-          <label>
-            How many kids?
-            <vue-number-input v-model="numKids" inline center controls></vue-number-input>
-          </label>
-
-          <select v-model="pizzaChain">
-            <option v-for="option in pizzaChains" :value="option">
-              {{ option }}
-            </option>
-          </select>
-
-          <select v-model="pizzaSize" v-show="!splitMenuMode">
-            <option v-for="option in pizzaSizes" :value="option">
-              {{ option }}
-            </option>
-          </select>
-        
-          <div>
-
-          <input type="checkbox" id="workFunction" v-model="workFunction">
-          &nbsp;
-          <label for="workFunction">Work / Company Meal?</label>
-          &nbsp;&nbsp;
-          <input type="checkbox" id="corporateSponsor" v-model="corporateSponsor">
-          &nbsp;
-          <label for="corporateSponsor">Corporate Sponsor?</label>
-        </div>
-
+  <h2 class="text-2xl font-semibold text-gray-800 md:text-3xl mt-4 mb-4">Choose a pizza chain</h2>
+  <div class="grid grid-cols-2 gap-4">
+    <button class="pizza-selection-button" v-bind:class="dominos" @click="pizzaChain = 'Dominos'">
+      <img src="/Dominos_pizza_logo.svg" alt="How Many Pizzas Logo" width="100" height="100"/>
+    </button>
+    <button class="pizza-selection-button" v-bind:class="pizzahut" @click="pizzaChain = 'Pizza Hut'">
+      <img src="/Pizza_Hut_logo.svg" alt="How Many Pizzas Logo" width="100" height="100"/>
+    </button>
+    <button class="pizza-selection-button" v-bind:class="papajohns" @click="pizzaChain = 'Papa John\'s'">
+      <img src="/Papa_John_Logo_2019.svg" alt="How Many Pizzas Logo" width="100" height="100"/>
+    </button>
+    <button class="pizza-selection-button" v-bind:class="pizzala" @click="pizzaChain = 'Pizza La'">
+      <img src="/pizza-la-logo.png" alt="How Many Pizzas Logo" width="100" height="100"/>
+    </button>
   </div>
-
+  <h2 class="text-2xl font-semibold text-gray-800 md:text-3xl mt-4">How many people?</h2>
+  <div class="grid grid-cols-2 gap-4 mt-2">
+    <h3>How many adults?</h3>
+    <h3>How many kids?</h3>
+    <div>
+      <vue-number-input v-model="numAdults" inline center controls></vue-number-input>
+    </div>
+    <div>
+      <vue-number-input v-model="numKids" inline center controls></vue-number-input>
+    </div>
+  </div>
+  <h2 class="text-2xl font-semibold text-gray-800 md:text-3xl mt-4">Want us to suggest pizzas?</h2>
+  <div class="grid grid-cols-1 gap-4 mt-2">
+    <div>
+      <label>
+        <input type="checkbox" id="splitMenuMode" v-model="splitMenuMode">
+        Yes, suggest pizza sizes for me!
+      </label>
+    </div>
+    <div v-show="!splitMenuMode">
+      <h3 class="text-xl font-semibold text-gray-800 md:text-2xl mt-4 mb-4">What's the size of the pizza?</h3>
+      <select v-model="pizzaSize" v-show="!splitMenuMode">
+        <option v-for="option in pizzaSizes" :value="option">
+          {{ option }}
+        </option>
+      </select>
+    </div>
+  </div>
+  <h2 class="text-xl font-semibold text-gray-800 md:text-2xl mt-4">Any other details?</h2>
+  <div class="grid grid-cols-1 gap-4 mt-2">
+    <div>
+      <label>
+        <input type="checkbox" id="workFunction" v-model="workFunction">
+        This is for a work event / team lunch / hackathon
+      </label>
+    </div>
+    <div>
+      <label>
+        <input type="checkbox" id="corporateSponsor" v-model="corporateSponsor">
+        This event is sponsored by a company / organization
+      </label>
+    </div>
+  </div>
   <div>
-
-    
-
     <div class="card pizza-result shadow-md" v-show="parseInt(slicesNeeed) > 0">
-    
       <span v-show="!splitMenuMode">
         You should buy <strong>{{ numPizzas }}*</strong> {{ pizzaSize }} {{ pizza }} from <strong>{{ pizzaChain }}</strong>.
       </span>
-
       <span v-show="splitMenuMode">
-        Your <strong>{{ pizzaChain }}</strong> order should be:<br>
+        Your <strong>{{ pizzaChain }}</strong> order should be*:<br>
           <span v-for="(value, key) in splitMenuData" v-show="parseInt(value) > 0">
             <strong>{{ value }}</strong> {{ key }}&nbsp;
           </span>
       </span>
     </div>
-
     <div class="breakdown text-slate-400 p-5 mt-4 mb-8 text-center" v-show="parseInt(slicesNeeed) > 0">
       <p>
         The attendes are assumed to be:         
@@ -287,9 +314,7 @@ export default {
           </span>
           To feed everyone, there are {{ slicesNeeed }} slices needed. You might have
           {{ leftoverSlices }} slices left over.
-        
       </p>
     </div>
   </div>
-
 </template>

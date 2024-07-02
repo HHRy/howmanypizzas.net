@@ -27,4 +27,33 @@
   .pizza-result span {
     font-size: 2rem;
   }
+
+  .pizza-selection-button {
+    border: 2px solid #b61f3b;
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: #ffffff;
+    color: #111;
+
+
+    &:hover {
+      background-color: #fdf2ac; 
+      color: #fff;
+    }
+
+    &.active {
+      background-color: #bec132;
+      color: #fff;
+    }
+
+    img {
+      display: inline-block;
+      height: 60px;
+      width: auto;
+    }
+  }
+
 }
