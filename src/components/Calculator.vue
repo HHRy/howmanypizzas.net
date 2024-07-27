@@ -1,3 +1,8 @@
+<script setup> 
+import { useI18n } from 'vue-i18n'
+const { t } = useI18n() 
+</script>
+
 <script>
 export default {
   data() {
@@ -26,7 +31,7 @@ export default {
       remainderAdults: 0,
       baseSlicesPerPerson: 4,
       slicesPerPerson: 4,
-      splitMenuMode: false,
+      splitMenuMode: true,
       splitMenuData: {},
       chainData: {
         "Dominos" : {
@@ -235,7 +240,7 @@ export default {
   <h2 class="text-2xl font-semibold text-gray-800 md:text-3xl mt-4 mb-4">Choose a pizza chain</h2>
   <div class="grid grid-cols-2 gap-4">
     <button class="pizza-selection-button" v-bind:class="dominos" @click="pizzaChain = 'Dominos'">
-      <img src="/Dominos_pizza_logo.svg" alt="How Many Pizzas Logo" width="100" height="100"/>
+      <img src="/Dominos_pizza_logo.svg" alt="{{ $t('message.hello') }}" width="100" height="100"/>
     </button>
     <button class="pizza-selection-button" v-bind:class="pizzahut" @click="pizzaChain = 'Pizza Hut'">
       <img src="/Pizza_Hut_logo.svg" alt="How Many Pizzas Logo" width="100" height="100"/>
@@ -293,27 +298,25 @@ export default {
   <div>
     <div class="card pizza-result shadow-md" v-show="parseInt(slicesNeeed) > 0">
       <span v-show="!splitMenuMode">
-        You should buy <strong>{{ numPizzas }}*</strong> {{ pizzaSize }} {{ pizza }} from <strong>{{ pizzaChain }}</strong>.
+        {{ $t('suggestion.buySinglePizzaSize', { numPizzas: numPizzas, chain: pizzaChain, size: pizzaSize  }) }}
       </span>
       <span v-show="splitMenuMode">
-        Your <strong>{{ pizzaChain }}</strong> order should be*:<br>
+        {{ $t('suggestion.multiplePizzas', { chain: pizzaChain }) }}<br>
           <span v-for="(value, key) in splitMenuData" v-show="parseInt(value) > 0">
-            <strong>{{ value }}</strong> {{ key }}&nbsp;
+            <strong>{{ value }}</strong> {{ $t(`sizes.${key}`) }}&nbsp;
           </span>
       </span>
     </div>
     <div class="breakdown text-slate-400 p-5 mt-4 mb-8 text-center" v-show="parseInt(slicesNeeed) > 0">
       <p>
-        The attendes are assumed to be:         
-          {{ bigEaters }} big eaters, 
-          {{ smallEaters }} small eaters,
-          {{ remainderAdults }} medium eaters, and
-          {{ numKids }} kids.
-          <span v-show="!splitMenuMode">
-          A {{ pizzaSize }} pizza from {{ pizzaChain }} has {{ slicesPerPizza }} slices.
-          </span>
-          To feed everyone, there are {{ slicesNeeed }} slices needed. You might have
-          {{ leftoverSlices }} slices left over.
+        {{ $t('explaination.attendeeBreakdown', { bigEaters: bigEaters, smallEaters: smallEaters, mediumEaters: remainderAdults, kids: numKids  }) }}
+        <span v-show="!splitMenuMode">
+          {{ $t('explaination.pizzaSizeDetails', { size: pizzaSize, chain: pizzaChain, sliceCount: slicesPerPizza  }) }}
+        </span>
+        {{ $t('explaination.totalSlices', { sliceCount: slicesNeeed  }) }}
+        <span v-show="leftoverSlices > 0">
+          {{ $t('explaination.possibleLeftovers', { leftoverCount: leftoverSlices  }) }}
+        </span>
       </p>
     </div>
   </div>
