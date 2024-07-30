@@ -1,3 +1,8 @@
+<script setup> 
+import { useI18n } from 'vue-i18n'
+const { t } = useI18n() 
+</script>
+
 <script>
 export default {
   data() {
@@ -26,7 +31,7 @@ export default {
       remainderAdults: 0,
       baseSlicesPerPerson: 4,
       slicesPerPerson: 4,
-      splitMenuMode: false,
+      splitMenuMode: true,
       splitMenuData: {},
       chainData: {
         "Dominos" : {
@@ -232,10 +237,10 @@ export default {
 </script>
 
 <template>
-  <h2 class="text-2xl font-semibold text-gray-800 md:text-3xl mt-4 mb-4">Choose a pizza chain</h2>
+  <h2 class="text-2xl font-semibold text-gray-800 md:text-3xl mt-4 mb-4">{{ $t('questions.whichPizzaChain') }}</h2>
   <div class="grid grid-cols-2 gap-4">
     <button class="pizza-selection-button" v-bind:class="dominos" @click="pizzaChain = 'Dominos'">
-      <img src="/Dominos_pizza_logo.svg" alt="How Many Pizzas Logo" width="100" height="100"/>
+      <img src="/Dominos_pizza_logo.svg" alt="{{ $t('message.hello') }}" width="100" height="100"/>
     </button>
     <button class="pizza-selection-button" v-bind:class="pizzahut" @click="pizzaChain = 'Pizza Hut'">
       <img src="/Pizza_Hut_logo.svg" alt="How Many Pizzas Logo" width="100" height="100"/>
@@ -247,10 +252,10 @@ export default {
       <img src="/pizza-la-logo.png" alt="How Many Pizzas Logo" width="100" height="100"/>
     </button>
   </div>
-  <h2 class="text-2xl font-semibold text-gray-800 md:text-3xl mt-4">How many people?</h2>
+  <h2 class="text-2xl font-semibold text-gray-800 md:text-3xl mt-4">{{ $t('questions.howManyPeople') }}</h2>
   <div class="grid grid-cols-2 gap-4 mt-2">
-    <h3>How many adults?</h3>
-    <h3>How many kids?</h3>
+    <h3>{{ $t('questions.howManyAdults') }}</h3>
+    <h3>{{ $t('questions.howManyKids') }}</h3>
     <div>
       <vue-number-input v-model="numAdults" inline center controls></vue-number-input>
     </div>
@@ -258,62 +263,60 @@ export default {
       <vue-number-input v-model="numKids" inline center controls></vue-number-input>
     </div>
   </div>
-  <h2 class="text-2xl font-semibold text-gray-800 md:text-3xl mt-4">Want us to suggest pizzas?</h2>
+  <h2 class="text-2xl font-semibold text-gray-800 md:text-3xl mt-4">{{ $t('questions.suggestPizzas') }}</h2>
   <div class="grid grid-cols-1 gap-4 mt-2">
     <div>
       <label>
         <input type="checkbox" id="splitMenuMode" v-model="splitMenuMode">
-        Yes, suggest pizza sizes for me!
+        {{ $t('questions.yesSuggest') }}
       </label>
     </div>
     <div v-show="!splitMenuMode">
-      <h3 class="text-xl font-semibold text-gray-800 md:text-2xl mt-4 mb-4">What's the size of the pizza?</h3>
+      <h3 class="text-xl font-semibold text-gray-800 md:text-2xl mt-4 mb-4">{{ $t('questions.pizzaSize') }}</h3>
       <select v-model="pizzaSize" v-show="!splitMenuMode">
         <option v-for="option in pizzaSizes" :value="option">
-          {{ option }}
+          {{ $t(`sizes.${option}`) }}
         </option>
       </select>
     </div>
   </div>
-  <h2 class="text-xl font-semibold text-gray-800 md:text-2xl mt-4">Any other details?</h2>
+  <h2 class="text-xl font-semibold text-gray-800 md:text-2xl mt-4">{{ $t('questions.otherDetails') }}</h2>
   <div class="grid grid-cols-1 gap-4 mt-2">
     <div>
       <label>
         <input type="checkbox" id="workFunction" v-model="workFunction">
-        This is for a work event / team lunch / hackathon
+        {{ $t('questions.workEvent') }}
       </label>
     </div>
     <div>
       <label>
         <input type="checkbox" id="corporateSponsor" v-model="corporateSponsor">
-        This event is sponsored by a company / organization
+        {{ $t('questions.corporateSponsor') }}
       </label>
     </div>
   </div>
   <div>
     <div class="card pizza-result shadow-md" v-show="parseInt(slicesNeeed) > 0">
       <span v-show="!splitMenuMode">
-        You should buy <strong>{{ numPizzas }}*</strong> {{ pizzaSize }} {{ pizza }} from <strong>{{ pizzaChain }}</strong>.
+        {{ $t('suggestion.buySinglePizzaSize', { numPizzas: numPizzas, chain: pizzaChain, size: pizzaSize  }) }}
       </span>
       <span v-show="splitMenuMode">
-        Your <strong>{{ pizzaChain }}</strong> order should be*:<br>
+        {{ $t('suggestion.multiplePizzas', { chain: pizzaChain }) }}<br>
           <span v-for="(value, key) in splitMenuData" v-show="parseInt(value) > 0">
-            <strong>{{ value }}</strong> {{ key }}&nbsp;
+            <strong>{{ value }}</strong> {{ $t(`sizes.${key}`) }}&nbsp;
           </span>
       </span>
     </div>
     <div class="breakdown text-slate-400 p-5 mt-4 mb-8 text-center" v-show="parseInt(slicesNeeed) > 0">
       <p>
-        The attendes are assumed to be:         
-          {{ bigEaters }} big eaters, 
-          {{ smallEaters }} small eaters,
-          {{ remainderAdults }} medium eaters, and
-          {{ numKids }} kids.
-          <span v-show="!splitMenuMode">
-          A {{ pizzaSize }} pizza from {{ pizzaChain }} has {{ slicesPerPizza }} slices.
-          </span>
-          To feed everyone, there are {{ slicesNeeed }} slices needed. You might have
-          {{ leftoverSlices }} slices left over.
+        {{ $t('explaination.attendeeBreakdown', { bigEaters: bigEaters, smallEaters: smallEaters, mediumEaters: remainderAdults, kids: numKids  }) }}
+        <span v-show="!splitMenuMode">
+          {{ $t('explaination.pizzaSizeDetails', { size: pizzaSize, chain: pizzaChain, sliceCount: slicesPerPizza  }) }}
+        </span>
+        {{ $t('explaination.totalSlices', { sliceCount: slicesNeeed  }) }}
+        <span v-show="leftoverSlices > 0">
+          {{ $t('explaination.possibleLeftovers', { leftoverCount: leftoverSlices  }) }}
+        </span>
       </p>
     </div>
   </div>
