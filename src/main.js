@@ -7,7 +7,7 @@ import './index.css';
 import App from './App.vue';
 
 const i18n = createI18n({
-  locale: 'en',
+  locale: 'ja',
   legacy: false,
   fallbackLocale: 'en',
   messages: {
@@ -46,6 +46,10 @@ const i18n = createI18n({
         otherDetails: 'Other details',
         workEvent: 'This is for a work event / team lunch / hackathon',
         corporateSponsor: 'This event is sponsored by a company / organization'
+      },
+      other: {
+        misshapWarning: 'These are suggestions, follow them at your own risk. We are not responsible for any pizza-related mishaps. 🍕',
+        disclaimer: 'This site is not affiliated with any pizza chain. It\'s just a bit of fun. Logos are used for illustrative purposes only.'
       }
     },  
     ja: {
@@ -83,6 +87,10 @@ const i18n = createI18n({
         otherDetails: "その他の詳細",
         workEvent: "これは仕事のイベント / チームランチ / ハッカソン用です",
         corporateSponsor: "このイベントは会社 / 組織によって後援されています"
+      },
+      other: {
+        misshapWarning: 'これらは提案です。自己責任で従ってください。ピザに関するトラブルについては責任を負いません。🍕',
+        disclaimer: 'このサイトはどのピザチェーンとも提携していません。ただの楽しみのためです。ロゴはイラストとして使用されています。'
       }
   }
 }});

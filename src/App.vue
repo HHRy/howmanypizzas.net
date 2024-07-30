@@ -1,5 +1,7 @@
 <script setup>
   import Calculator from './components/Calculator.vue'
+  import { useI18n } from 'vue-i18n'
+  const { t } = useI18n() 
 </script>
 
 <script>
@@ -40,13 +42,13 @@ export default {
   </div>  
   <footer class="mb-4 mt-8">
     <div class="bg-gray-200 text-red-500 font-size-xs text-center py-4">
-      * These are suggestions, follow them at your own risk. We are not responsible for any pizza-related mishaps. 🍕
+      {{ $t('other.misshapWarning') }}
     </div>
     <div class="bg-white text-gray-600 font-size-xs text-center py-1">
       &copy; 2013 - {{currentDate.getFullYear()}}. Ryan Stenhouse &amp; Contributors.
     </div>
     <div class="bg-white text-gray-300 font-size-xs text-center py-1">
-      This site is not affiliated with any pizza chain. It's just a bit of fun. Logos are used for illustrative purposes only.
+      {{ $t('other.disclaimer') }}
     </div>
   </footer>
 </template>
