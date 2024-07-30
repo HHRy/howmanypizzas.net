@@ -104,7 +104,6 @@ export default {
 
   methods: {
     calculateSplitMenu() {
-      // splitMenuMode
       var chainInformation = this.chainData[this.pizzaChain]
       var remainingSlices = this.slicesNeeed
 
@@ -115,17 +114,8 @@ export default {
         "small": 0
       }
 
-      if(this.numAdults == 1) {
-        this.splitMenuData["small"] = 1
-        return
-      }
 
-      if(this.numAdults == 2) {
-        this.splitMenuData["medium"] = 1
-        return
-      }
-
-      while(remainingSlices > 6) {
+      while(remainingSlices >= chainInformation['small']) {
         this.pizzaSizes.forEach((size) => {
           // Ignore xlarge as an option for now.
           if(size != "xlarge") {
@@ -138,7 +128,7 @@ export default {
       }
 
       if(remainingSlices > 0) {
-        this.splitMenuData["medium"] += 1
+        this.splitMenuData["small"] += 1
       }
 
       var slicesOrdered = 0
