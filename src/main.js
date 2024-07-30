@@ -34,6 +34,18 @@ const i18n = createI18n({
         pizzaSizeDetails: 'A {size} pizza from {chain} has {sliceCount} slices.',
         totalSlices: 'To feed everyone, there are {sliceCount} slices needed.',
         possibleLeftovers: 'You might have {leftoverCount} slices left over.'
+      },
+      questions: {
+        whichPizzaChain: 'Which pizza chain are you ordering from?',
+        howManyPeople: 'How many people?',
+        howManyAdults: 'How many adults?',
+        howManyKids: 'How many kids?',
+        suggestPizzas: 'Should I suggest sizes of pizzas?',
+        yesSuggest: 'Yes, suggest pizza sizes for me!',
+        pizzaSize: 'Which size pizza would you like?',
+        otherDetails: 'Other details',
+        workEvent: 'This is for a work event / team lunch / hackathon',
+        corporateSponsor: 'This event is sponsored by a company / organization'
       }
     },  
     ja: {
@@ -59,6 +71,18 @@ const i18n = createI18n({
         pizzaSizeDetails: '{chain}の{size}サイズのピザは{sliceCount}切れ。',
         totalSlices: '全員に食べさせるには、{sliceCount}枚のピザ切が必要だ。',
         possibleLeftovers: '{leftoverCount}切れ余るかもしれない。'
+      },
+      questions: {
+        whichPizzaChain: "どのピザチェーンから注文しますか？",
+        howManyPeople: "何人ですか？",
+        howManyAdults: "大人は何人ですか？",
+        howManyKids: "子供は何人ですか？",
+        suggestPizzas: "ピザのサイズを提案しますか？",
+        yesSuggest: "はい、ピザのサイズを提案してください！",
+        pizzaSize: "どのサイズのピザがいいですか？",
+        otherDetails: "その他の詳細",
+        workEvent: "これは仕事のイベント / チームランチ / ハッカソン用です",
+        corporateSponsor: "このイベントは会社 / 組織によって後援されています"
       }
   }
 }});
