@@ -26,8 +26,8 @@ const i18n = createI18n({
         xlarge: 'Extra Large'
       },
       suggestion: {
-        buySinglePizzaSize: 'You should buy {numPizzas} {size} from {chain}.*',
-        multiplePizzas: ' Your {chain} order should be:*'
+        buySinglePizzaSize: 'You should buy {numPizzas} {size} from {chain}.',
+        multiplePizzas: ' Your {chain} order should be:'
       },
       explaination: {
         attendeeBreakdown: 'The attendes are assumed to be: {bigEaters} big eaters, {smallEaters} small eaters, {mediumEaters} medium eaters, and {kids} kids.',
@@ -43,6 +43,7 @@ const i18n = createI18n({
         papaJohns: 'パッパ・ジョンズ',
         pizzaLa: 'ピザ・ラ'
       },
+      pizza: 'ピザ | ピザ',
       sizes: {
         small: 'S',
         medium: 'M',
@@ -50,8 +51,8 @@ const i18n = createI18n({
         xlarge: 'LL'
       },
       suggestion: {
-        buySinglePizzaSize: '{chain}の{size}サイズのピザを{numPizzas}枚買うべきだ。*',
-        multiplePizzas: '{chain}を注文する際は、以下のようにすることをお勧めする：*'
+        buySinglePizzaSize: '{chain}の{size}サイズのピザを{numPizzas}枚買うべきだ。',
+        multiplePizzas: '{chain}を注文する際は、以下のようにすることをお勧めする：'
       },
       explaination: {
         attendeeBreakdown: '出席者はこう仮定する： 腹ペコ{bigEaters}人、少食{smallEaters}人、普通{mediumEaters}人、子供{kids}人。',
