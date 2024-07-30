@@ -1,5 +1,6 @@
 <script setup>
   import Calculator from './components/Calculator.vue'
+  import LocaleChanger from './components/LocaleChanger.vue'
   import { useI18n } from 'vue-i18n'
   const { t } = useI18n() 
 </script>
@@ -29,13 +30,18 @@ export default {
                   <p class="mt-2 text-sm text-gray-500 md:text-base">
                     Not sure how many pizzas to order for your next gathering? howmanypizzas.net makes it fun and easy to calculate the perfect number of pizzas for any group size. Try our tool now and make your pizza party planning a breeze!
                   </p>
-                  <p class="mt-2 text-sm text-gray-500 md:text-base">
+                  <p class="mt-2 mb-2 text-sm text-gray-500 md:text-base">
                     We use the sizes of pizzas from popular chains, and some broadly available statistics for pizza consumption to calculate just the right number of pizzas.
+                  </p>
+
+                  <p class="mt-4">
+                    <locale-changer />
                   </p>
               </div>
           </div>
       </div>
     </div>
+    
   </div>
   <div class="container mx-auto px-4">
     <Calculator />

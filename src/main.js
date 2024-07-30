@@ -7,11 +7,15 @@ import './index.css';
 import App from './App.vue';
 
 const i18n = createI18n({
-  locale: 'ja',
+  locale: 'en',
   legacy: false,
   fallbackLocale: 'en',
   messages: {
     en: {
+      locales: {
+        en: 'English',
+        ja: '日本語'
+      },
       chains: {
         dominos: 'Dominos',
         pizzaHut: 'Pizza Hut',
@@ -53,6 +57,10 @@ const i18n = createI18n({
       }
     },  
     ja: {
+      locales: {
+        en: 'English',
+        ja: '日本語'
+      },
       chains: {
         dominos: 'ドミノ',
         pizzaHut: 'ピザ・ハット',
