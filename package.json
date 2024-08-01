@@ -10,7 +10,9 @@
   },
   "dependencies": {
     "@chenfengyuan/vue-number-input": "^2.0.1",
-    "@heroicons/vue": "^2.1.4",
+    "@headlessui/tailwindcss": "^0.2.1",
+    "@headlessui/vue": "^1.7.22",
+    "@heroicons/vue": "^2.1.5",
     "@mdi/font": "^7.4.47",
     "@tailwindcss/forms": "^0.5.7",
     "vue": "^3.4.31",

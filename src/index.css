@@ -24,8 +24,35 @@
     color:#b61f3b;
   }
 
+  .bg-pizza-red {
+    background-color: #b61f3b;
+  }
+
   .pizza-result span {
     font-size: 2rem;
+  }
+
+  .pizza-red-border{
+    border: 2px solid #b61f3b;
+  }
+
+  .locale-selector{
+    background-color: #fff;
+    color: #b61f3b;
+  }
+
+  .locale-selector-item{
+    background-color: inherit;
+
+    &.active-locale{
+      background-color: #bec132;
+      color: #b61f3b;
+    }
+
+    &:hover {
+      background-color: #fdf2ac;
+      color: #b61f3b; 
+    }
   }
 
   .pizza-selection-button {
