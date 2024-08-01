@@ -1,0 +1,45 @@
+{
+  "locales": {
+    "en": "English",
+    "ja": "日本語"
+  },
+  "chains": {
+    "dominos": "Dominos",
+    "pizzaHut": "Pizza Hut",
+    "papaJohns": "Pappa Johns",
+    "pizzaLa": "Pizza La"
+  },
+  "pizza": "pizza | pizzas",
+  "sizes": {  
+    "small": "Small",
+    "medium": "Medium",
+    "large": "Large",
+    "xlarge": "Extra Large"
+  },
+  "suggestion": {
+    "buySinglePizzaSize": "You should buy {numPizzas} {size} from {chain}.",
+    "multiplePizzas": " Your {chain} order should be:"
+  },
+  "explaination": {
+    "attendeeBreakdown": "The attendes are assumed to be: {bigEaters} big eaters, {smallEaters} small eaters, {mediumEaters} medium eaters, and {kids} kids.",
+    "pizzaSizeDetails": "A {size} pizza from {chain} has {sliceCount} slices.",
+    "totalSlices": "To feed everyone, there are {sliceCount} slices needed.",
+    "possibleLeftovers": "You might have {leftoverCount} slices left over."
+  },
+  "questions": {
+    "whichPizzaChain": "Which pizza chain are you ordering from?",
+    "howManyPeople": "How many people?",
+    "howManyAdults": "How many adults?",
+    "howManyKids": "How many kids?",
+    "suggestPizzas": "Should I suggest sizes of pizzas?",
+    "yesSuggest": "Yes, suggest pizza sizes for me!",
+    "pizzaSize": "Which size pizza would you like?",
+    "otherDetails": "Other details",
+    "workEvent": "This is for a work event / team lunch / hackathon",
+    "corporateSponsor": "This event is sponsored by a company / organization"
+  },
+  "other": {
+    "misshapWarning": "These are suggestions, follow them at your own risk. We are not responsible for any pizza-related mishaps. 🍕",
+    "disclaimer": "This site is not affiliated with any pizza chain. It's just a bit of fun. Logos are used for illustrative purposes only."
+  }
+}

@@ -1,0 +1,43 @@
+[
+  {
+    "key": "dominos",
+    "sizes": ["small", "medium", "large"],
+    "slices": {
+      "small": 6, 
+      "medium": 8, 
+      "large": 10
+    },
+    "logo": "/Dominos_pizza_logo.svg"
+  },
+  {
+    "key": "pizzaHut",
+    "sizes": ["small", "medium", "large"],
+    "slices": {
+      "small": 6, 
+      "medium": 8, 
+      "large": 10
+    },
+    "logo": "/Pizza_Hut_logo.svg"
+  },
+  {
+    "key": "papaJohns",
+    "sizes": ["small", "medium", "large", "xlarge"],
+    "slices": {
+      "small": 6, 
+      "medium": 8, 
+      "large": 10, 
+      "xlarge": 16
+    },
+    "logo": "/Papa_John_Logo_2019.svg"
+  },
+  {
+    "key": "pizzaLa",
+    "sizes": ["small", "medium", "large"],
+    "slices": {
+      "small": 4, 
+      "medium": 6, 
+      "large": 8
+    },
+    "logo": "/pizza-la-logo.png"
+  }
+]
