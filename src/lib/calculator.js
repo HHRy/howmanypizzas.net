@@ -40,7 +40,7 @@ const calculateSlices = (numAdults, numKids, workFunction, corporateSponsor) => 
     slices += Math.ceil(((numKids * slicesPerPerson) * kidsFactor))
   }
 
-  return Math.ceil(slices)
+  return [Math.ceil(slices), bigEaters, smallEaters, mediumEaters]
 }
 
 const calculateOnePizzaSize = (slices, size, slicesPerPizza) => {
@@ -55,12 +55,17 @@ const calculateOnePizzaSize = (slices, size, slicesPerPizza) => {
 }
 
 const calculatePizza = (numAdults, numKids, slicesData, workFunction, corporateSponsor, suggestMode, size) => {
-  const slices = calculateSlices(numAdults, numKids, workFunction, corporateSponsor)
+  const [slices, bigEaters, smallEaters, mediumEaters] = calculateSlices(numAdults, numKids, workFunction, corporateSponsor)
   let result = {
     slices: slices,
-    leftovers: 0,
+    leftoverSlices: 0,
+    totalPizzaSlices: 0,
+    bigEaters: bigEaters,
+    mediumEaters: mediumEaters,
+    smallEaters: smallEaters,
     pizzaBreakdown: []
   }
+  let totalPizzaSlices = 0
 
   if(suggestMode){
     let remainingSlices = slices
@@ -74,6 +79,7 @@ const calculatePizza = (numAdults, numKids, slicesData, workFunction, corporateS
       ['large', 'medium', 'small'].forEach((size) => {
         var pizzasOfThisSize = Math.floor(remainingSlices / slicesData[size])
         var slicesToDiscount = pizzasOfThisSize * slicesData[size]
+        totalPizzaSlices += slicesToDiscount
         remainingSlices -= slicesToDiscount
         suggestionBreakdown[size] += pizzasOfThisSize
       })
@@ -81,6 +87,7 @@ const calculatePizza = (numAdults, numKids, slicesData, workFunction, corporateS
 
     if(remainingSlices > 0) {
       suggestionBreakdown['small'] += 1
+      totalPizzaSlices += slicesData['small']
     }
 
     ['small', 'medium', 'large'].forEach((size) => {
@@ -95,10 +102,15 @@ const calculatePizza = (numAdults, numKids, slicesData, workFunction, corporateS
     })
 
   } else {
+    let onePizzaSize = calculateOnePizzaSize(slices, size, slicesData[size])
+    totalPizzaSlices += onePizzaSize.count * slicesData[size]
     result.pizzaBreakdown.push(
-      calculateOnePizzaSize(slices, size, slicesData[size])
+      onePizzaSize
     )
   }
+
+  result.totalPizzaSlices = totalPizzaSlices
+  result.leftoverSlices = totalPizzaSlices - slices
 
   return result
 }

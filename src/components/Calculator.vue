@@ -55,6 +55,9 @@ export default {
     selectedPizza: function(key) {
       return key == this.pizzaChain ? 'active' : 'inactive';
     },
+    currentPizzaChain() {
+      return this.selectPizza(this.pizzaChain)
+    },
     selectPizza(key) {
       let chain = pizzaChainData.filter((chain) => {
         return chain.key == key
@@ -62,8 +65,7 @@ export default {
       return chain[0]
     },
     calculate() {
-      let chainData = this.selectPizza(this.pizzaChain)
-      this.pizzaResults = calculator(this.numAdults, this.numKids, chainData.slices, this.workFunction, this.corporateSponsor, this.splitMenuMode, this.pizzaSize)
+      this.pizzaResults = calculator(this.numAdults, this.numKids, this.currentPizzaChain().slices, this.workFunction, this.corporateSponsor, this.splitMenuMode, this.pizzaSize)
     }
   }
 }
@@ -108,7 +110,7 @@ export default {
     <div v-show="!splitMenuMode">
       <h3 class="text-xl font-semibold text-gray-800 md:text-2xl mt-4 mb-4">{{ $t('questions.pizzaSize') }}</h3>
       <select v-model="pizzaSize" v-show="!splitMenuMode">
-        <option v-for="option in pizzaSizes" :value="option">
+        <option v-for="option in currentPizzaChain().sizes" :value="option">
           {{ $t(`sizes.${option}`) }}
         </option>
       </select>
@@ -158,15 +160,12 @@ export default {
             <strong>{{ item.count }}</strong> {{ $t(`sizes.${item.size}`) }}&nbsp;
           </span>
     </div>
-    <div class="breakdown text-slate-400 p-5 mt-4 mb-8 text-center" v-show="parseInt(slicesNeeed) > 0">
+    <div class="breakdown text-slate-400 p-5 mt-4 mb-8 text-center" v-show="pizzaResults.slices > 0">
       <p>
-        {{ $t('explaination.attendeeBreakdown', { bigEaters: bigEaters, smallEaters: smallEaters, mediumEaters: remainderAdults, kids: numKids  }) }}
-        <span v-show="!splitMenuMode">
-          {{ $t('explaination.pizzaSizeDetails', { size: pizzaSize, chain: pizzaChain, sliceCount: slicesPerPizza  }) }}
-        </span>
-        {{ $t('explaination.totalSlices', { sliceCount: slicesNeeed  }) }}
-        <span v-show="leftoverSlices > 0">
-          {{ $t('explaination.possibleLeftovers', { leftoverCount: leftoverSlices  }) }}
+        {{ $t('explaination.attendeeBreakdown', { bigEaters: pizzaResults.bigEaters, smallEaters: pizzaResults.smallEaters, mediumEaters: pizzaResults.mediumEaters, kids: numKids  }) }}
+        {{ $t('explaination.totalSlices', { sliceCount: pizzaResults.slices  }) }}
+        <span v-show="pizzaResults.leftoverSlices > 0">
+          {{ $t('explaination.possibleLeftovers', { leftoverCount: pizzaResults.leftoverSlices  }) }}
         </span>
       </p>
     </div>
