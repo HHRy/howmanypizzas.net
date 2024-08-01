@@ -1,0 +1,45 @@
+{
+  "locales": {
+    "en": "English",
+    "ja": "日本語"
+  },
+  "chains": {
+    "dominos": "ドミノ",
+    "pizzaHut": "ピザ・ハット",
+    "papaJohns": "パッパ・ジョンズ",
+    "pizzaLa": "ピザ・ラ"
+  },
+  "pizza": "ピザ | ピザ",
+  "sizes": {
+    "small": "S",
+    "medium": "M",
+    "large": "L",
+    "xlarge": "LL"
+  },
+  "suggestion": {
+    "buySinglePizzaSize": "{chain}の{size}サイズのピザを{numPizzas}枚買うべきだ。",
+    "multiplePizzas": "{chain}を注文する際は、以下のようにすることをお勧めする："
+  },
+  "explaination": {
+    "attendeeBreakdown": "出席者はこう仮定する： 腹ペコ{bigEaters}人、少食{smallEaters}人、普通{mediumEaters}人、子供{kids}人。",
+    "pizzaSizeDetails": "{chain}の{size}サイズのピザは{sliceCount}切れ。",
+    "totalSlices": "全員に食べさせるには、{sliceCount}枚のピザ切が必要だ。",
+    "possibleLeftovers": "{leftoverCount}切れ余るかもしれない。"
+  },
+  "questions": {
+    "whichPizzaChain": "どのピザチェーンから注文しますか？",
+    "howManyPeople": "何人ですか？",
+    "howManyAdults": "大人は何人ですか？",
+    "howManyKids": "子供は何人ですか？",
+    "suggestPizzas": "ピザのサイズを提案しますか？",
+    "yesSuggest": "はい、ピザのサイズを提案してください！",
+    "pizzaSize": "どのサイズのピザがいいですか？",
+    "otherDetails": "その他の詳細",
+    "workEvent": "これは仕事のイベント / チームランチ / ハッカソン用です",
+    "corporateSponsor": "このイベントは会社 / 組織によって後援されています"
+  },
+  "other": {
+    "misshapWarning": "これらは提案です。自己責任で従ってください。ピザに関するトラブルについては責任を負いません。🍕",
+    "disclaimer": "このサイトはどのピザチェーンとも提携していません。ただの楽しみのためです。ロゴはイラストとして使用されています。"
+  }
+}
